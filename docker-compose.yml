@@ -1,0 +1,22 @@
+version: '2.1'
+services:
+  currency-conversion:
+    container_name: currency-conversion
+    image: currency-conversion:latest
+    depends_on:
+      - forex-service
+      - eureka-server
+    ports:
+      - 8100:8100
+  forex-service:
+    container_name: forex-service
+    image: forex-service:latest
+    depends_on:
+      - eureka-server
+    ports:
+      - 8000:8000
+  eureka-server:
+    container_name: eureka-server
+    image: eureka-server:latest
+    ports:
+      - 8761:8761
